@@ -10,17 +10,26 @@
 <body>
     
 <video id="videoElement"></video>
+<button type="button" id="play-btn">Play</button>
 <script>
     if (flvjs.isSupported()) {
         var videoElement = document.getElementById('videoElement');
         var flvPlayer = flvjs.createPlayer({
             type: 'flv',
-            url: 'http://192.168.1.13:8000/live/FDZK6RB1.flv'
+            url: 'http://localhost:8000/live/test_stream.flv'
         });
         flvPlayer.attachMediaElement(videoElement);
         flvPlayer.load();
-        flvPlayer.play();
+        //
     }
+
+    window.addEventListener("load", function (event) {
+            console.log("'Todos los recursos terminaron de cargar!");
+            let play = document.getElementById('play-btn');
+            play.addEventListener('click',function(event) {
+                flvPlayer.play();
+            })
+    });
 </script>
 </body>
 </html>
